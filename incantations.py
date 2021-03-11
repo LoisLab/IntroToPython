@@ -13,9 +13,9 @@ def party(t, n=1):
         while new_member['name'] in [existing_member['name'] for existing_member in party]:
             new_member = t()
             attempts += 1
-            if attempts>100:
+            if attempts>1000:
                 break
-        if attempts<100:
+        if attempts<1000:
             party.append(new_member)
     return party
     
