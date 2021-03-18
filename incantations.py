@@ -27,3 +27,10 @@ def elf():
             'spells': {random.choice(ELF_SPELLS) for x in range(3)},
             'height': round(3 + 3*random.random(), 1),
             'intelligence': random.randint(15,45)}
+
+
+def weapon_test(weapon):
+    e = elf()
+    print(e['name'] + ' wields a ' + weapon.__str__() + ' with ' + random.choice((['determination', 'ferocity', 'angst'])))
+    print(e['name'] + ' attacks, ' + weapon.sound() + '!, doing ' + str(weapon.attack()) + ' damage.\n')
+       
