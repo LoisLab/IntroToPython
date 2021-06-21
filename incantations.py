@@ -1,29 +1,23 @@
 import random
+import copy
 
 ELF_NAMES =['Elas','Ardith','Candra','Aidon','Kyo','Ryo','Sneiji','Bre','Fra','Elgin','Meina','Posi',\
             'Cosi','Dorn','Klee','Qaio','Maio','Zey','Paila','Sash']
 
 ELF_SPELLS = ['heal', 'sleep', 'invisible', 'freeze', 'fireball', 'poof', 'shadow', 'stall']
 
-def party(t, n=1):
-    party = []
-    while (len(party)<n):
-        attempts = 0
-        new_member = t()
-        while new_member['name'] in [existing_member['name'] for existing_member in party]:
-            new_member = t()
-            attempts += 1
-            if attempts>1000:
-                break
-        if attempts<1000:
-            party.append(new_member)
-    return party
+
+def party(n):
+    names = copy.deepcopy(ELF_NAMES)
+    return [elf(names) for x in range(n)]
     
-def elf():
-    name = random.choice(ELF_NAMES)
+    
+def elf(names = ELF_NAMES):
+    name = random.choice(names)
+    names.remove(name)
     return {'name': name,
             'race': 'elf',
-            'friends': {random.choice(ELF_NAMES) for x in range(3)}-{name},
+            'friends': {random.choice(ELF_NAMES) for x in range(5)}-{name},
             'spells': {random.choice(ELF_SPELLS) for x in range(3)},
             'height': round(3 + 3*random.random(), 1),
             'health': random.randint(30,45),
