@@ -9,12 +9,16 @@ ELF_SPELLS = ['heal', 'sleep', 'invisible', 'freeze', 'fireball', 'poof', 'shado
 
 def party(n):
     names = copy.deepcopy(ELF_NAMES)
-    return [elf(names) for x in range(n)]
+    elves = []
+    for x in range(n):
+        new_elf = elf(names)
+        names.remove(new_elf['name'])
+        elves.append(new_elf)
+    return elves
     
     
 def elf(names = ELF_NAMES):
     name = random.choice(names)
-    names.remove(name)
     return {'name': name,
             'race': 'elf',
             'friends': {random.choice(ELF_NAMES) for x in range(5)}-{name},
