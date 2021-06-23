@@ -25,7 +25,7 @@ def elf(names = ELF_NAMES):
             'spells': {random.choice(ELF_SPELLS) for x in range(3)},
             'height': round(3 + 3*random.random(), 1),
             'health': random.randint(30,45),
-            'intelligence': random.randint(15,45)}
+            'intelligence': random.randint(4,20)}
 
 
 def weapon_test(weapon):
