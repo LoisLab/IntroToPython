@@ -28,6 +28,17 @@ def elf(names = ELF_NAMES):
             'intelligence': random.randint(4,20)}
 
 
+def conflict_detector(party):
+    names = {next_elf['name'] for next_elf in party} 
+    print('the party includes', names, '\n')
+    for next_elf in party:
+        conflicting_names = next_elf['friends'] & names
+        if len(conflicting_names) > 0:
+            print('X', next_elf['name'], 'has', conflicting_names, 'among his or her friends')
+        else:
+            print('>', next_elf['name'], 'is easy to have around on a trip to see Fredsie')
+
+
 def weapon_test(weapon):
     e = elf()
     print(e['name'] + ' wields a ' + weapon.__str__() + ' with ' + random.choice((['determination', 'ferocity', 'angst'])))
